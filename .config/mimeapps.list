@@ -1,0 +1,22 @@
+[Added Associations]
+inode/directory=thunar.desktop;
+text/css=dev.pulsar_edit.Pulsar.desktop;
+application/xml=dev.pulsar_edit.Pulsar.desktop;
+text/plain=dev.pulsar_edit.Pulsar.desktop;
+application/x-zerosize=dev.pulsar_edit.Pulsar.desktop;
+application/octet-stream=dev.pulsar_edit.Pulsar.desktop;
+image/jpeg=com.github.PintaProject.Pinta.desktop;brave-browser.desktop;org.kde.krita.desktop;
+image/png=org.kde.krita.desktop;com.github.PintaProject.Pinta.desktop;
+
+[Default Applications]
+text/css=dev.pulsar_edit.Pulsar.desktop
+text/plain=dev.pulsar_edit.Pulsar.desktop
+text/html=brave-browser.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/unknown=brave-browser.desktop
+application/x-zerosize=dev.pulsar_edit.Pulsar.desktop
+application/octet-stream=dev.pulsar_edit.Pulsar.desktop
+image/jpeg=com.github.PintaProject.Pinta.desktop
+image/png=com.github.PintaProject.Pinta.desktop
