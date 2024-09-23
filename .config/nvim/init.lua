@@ -148,6 +148,14 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
+vim.opt.shiftwidth = 8
+
+vim.opt.tabstop = 8
+
+vim.opt.autoindent = true
+
+vim.opt.smartindent = true
+
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 
@@ -189,6 +197,19 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+vim.keymap.set("n", "<A-h>", function()
+	vim.cmd("vert res +1")
+end, { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<A-l>", function()
+	vim.cmd("vert res -1")
+end, { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<A-j>", function()
+	vim.cmd("res +1")
+end, { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<A-k>", function()
+	vim.cmd("res -1")
+end, { desc = "Move focus to the upper window" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -460,7 +481,7 @@ require("lazy").setup({
 			end, { desc = "Open new tab with [E]xplorer" })
 
 			-- New tab on leader f3
-			vim.keymap.set("n", "<F3>t", function()
+			vim.keymap.set("n", "<F3>n", function()
 				builtin.find_files({
 					cwd = vim.fn.getcwd(),
 					attach_mappings = function(prompt_bufnr, map)
@@ -472,7 +493,7 @@ require("lazy").setup({
 						return true
 					end,
 				})
-			end, { desc = "Open new [t]ab with selectable file" })
+			end, { desc = "Open [n]ew tab with selectable file" })
 
 			-- new split window on f4
 			vim.keymap.set("n", "<F3>s", function()
@@ -495,9 +516,9 @@ require("lazy").setup({
 			end, { desc = "[E]xplorer" })
 
 			-- open terminal
-			vim.keymap.set("n", "<F5>", function()
+			vim.keymap.set("n", "<F3>t", function()
 				vim.cmd("tabnew | terminal")
-			end, {})
+			end, { desc = "Open new tab with [t]erminal" })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -805,6 +826,7 @@ require("lazy").setup({
 				"clangd",
 				"cmake",
 				"harper-ls",
+				"codelldb",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -821,6 +843,129 @@ require("lazy").setup({
 				},
 			})
 		end,
+	},
+	{
+		"mfussenegger/nvim-dap",
+		recommended = true,
+		desc = "Debugging support. Requires language specific adapters to be configured",
+
+		dependencies = {
+			{
+				"rcarriga/nvim-dap-ui",
+				event = "VeryLazy",
+				dependencies = {
+					"mfussenegger/nvim-dap",
+					"nvim-neotest/nvim-nio",
+				},
+			},
+			"theHamsta/nvim-dap-virtual-text",
+		},
+
+		keys = {
+			{
+				"<leader>b",
+				function()
+					require("dap").toggle_breakpoint()
+				end,
+				desc = "Toggle Breakpoint",
+			},
+			{
+				"<leader>gb",
+				function()
+					require("dap").run_to_cursor()
+				end,
+				desc = "Run to Cursor",
+			},
+			{
+				"<leader>?",
+				function()
+					require("dapui").eval(nil, { enter = true })
+				end,
+				desc = "Evaluate value under cursor",
+			},
+			{
+				"<F5>",
+				function()
+					require("dap").step_into()
+				end,
+				desc = "Step into",
+			},
+			{
+				"<F6>",
+				function()
+					require("dap").step_over()
+				end,
+				desc = "Step over",
+			},
+			{
+				"<F7>",
+				function()
+					require("dap").step_out()
+				end,
+				desc = "Step out",
+			},
+			{
+				"<F8>",
+				function()
+					require("dap").step_back()
+				end,
+				desc = "Step back",
+			},
+			{
+				"<F9>",
+				function()
+					require("dap").continue()
+				end,
+				desc = "Continue",
+			},
+			{
+				"<F10>",
+				function()
+					require("dap").restart()
+				end,
+				desc = "Restart",
+			},
+			{
+				"<F11>",
+				function()
+					require("dap").disconnect()
+				end,
+				desc = "Disconnect",
+			},
+		},
+
+		config = function()
+			local dap = require("dap")
+			local ui = require("dapui")
+
+			require("dapui").setup()
+
+			require("nvim-dap-virtual-text").setup()
+
+			dap.listeners.before.attach.dapui_config = function()
+				ui.open()
+			end
+			dap.listeners.before.launch.dapui_config = function()
+				ui.open()
+			end
+			dap.listeners.before.event_terminated.dapui_config = function()
+				ui.close()
+			end
+			dap.listeners.before.event_exited.dapui_config = function()
+				ui.close()
+			end
+		end,
+	},
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"mfussenegger/nvim-dap",
+		},
+		opts = {
+			handlers = {},
+		},
 	},
 
 	{ -- Autoformat
@@ -934,7 +1079,7 @@ require("lazy").setup({
 					--  This will auto-import if your LSP supports it.
 					--  This will expand snippets if the LSP sent a snippet.
 					["<C-y>"] = cmp.mapping.confirm({ select = true }),
-					["<Tab>"] = cmp.mapping.confirm({ select = true }),
+					["<Enter>"] = cmp.mapping.confirm({ select = true }),
 
 					-- If you prefer more traditional completion keymaps,
 					-- you can uncomment the following lines
@@ -982,7 +1127,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
 	{ -- You can easily change to a different colorscheme.
 		-- Change the name of the colorscheme plugin below, and then
 		-- change the command in the config to whatever the name of that colorscheme is.
