@@ -1,0 +1,17 @@
+prompt=Search...
+
+mode=drun
+term=alacritty
+
+hide_scroll = true
+normal_window = false
+
+matching=contains
+insensitive=true
+
+columns=2
+width=1000px
+height=500px
+
+allow_images = true
+image_size = 25

@@ -1,0 +1,4 @@
+com.github.tchx84.Flatseal com.spotify.Client
+com.github.PintaProject.Pinta org.kde.krita
+org.onlyoffice.desktopeditors org.libreoffice.LibreOffice
+com.tomjwatson.Emote
