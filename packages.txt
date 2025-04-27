@@ -6,7 +6,8 @@ grim slurp
 wl-clipboard cliphist
 gtk3 qt6-base qt5-base
 capitaine-cursors candy-icons-git
-ttf-font-awesome ttf-roboto noto-fonts-emoji
+ttf-font-awesome ttf-roboto noto-fonts-emoji noto-fonts
+ttf-jetbrains-mono ttf-jetbrains-mono-nerd
 qt5ct qt6ct nwg-look
 networkmanager network-manager-applet
 pipewire lib32-pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack lib32-pipewire-jack
@@ -14,10 +15,14 @@ pavucontrol qpwgraph
 thunar tumbler
 portmaster-stub-bin
 discord
-gcc cmake python jdk-openjdk
+gcc cmake python jdk-openjdk clang gradle meson
 lutris steam protontricks
-alacritty
+kitty
 wofi
-neofetch
+fastfetch
 ollama
 github-cli
+brightnessctl
+htop
+nautilus
+tuned tuned-pdd

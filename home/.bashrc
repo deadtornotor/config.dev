@@ -29,4 +29,4 @@ PS1='\[\e[38;5;226;1m\]\u\[\e[0;38;5;196m\]@\[\e[38;5;39;1m\]\h\[\e[0m\] \[\e[38
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 
-neofetch
+fastfetch

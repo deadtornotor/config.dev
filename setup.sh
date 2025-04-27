@@ -29,15 +29,14 @@ fi
 
 echo "==> Installing packages from packages.txt..."
 if [[ -f packages.txt ]]; then
-    yay -Syyu
-    yay -S --needed --noconfirm $(<packages.txt)
+    yay -Syyu --needed --noconfirm $(<packages.txt)
 else
     echo "packages.txt not found!"
 fi
 
 echo "==> Enabling Deamons..."
 
-systemctl enable --now portmaster
+systemctl enable --now portmaster tuned tuned-ppd
 
 systemctl --user enable --now pipewire
 systemctl --user enable --now pipewire-pulse
@@ -50,12 +49,10 @@ else
 fi
 
 echo "==> Installing flatpak apps from flatpak.txt..."
-if [[ -f flatpak.txt ]]; then
-    while IFS= read -r app; do
-        [[ -n "$app" ]] && flatpak install -y "$app"
-    done < flatpaks.txt
+if [[ -f flatpaks.txt ]]; then
+    flatpak install -y $(<flatpaks.txt)
 else
-    echo "flatpak.txt not found!"
+    echo "flatpaks.txt not found!"
 fi
 
 echo "==> Syncing config directories from conf/ to ~/.config/..."
