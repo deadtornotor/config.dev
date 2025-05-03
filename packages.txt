@@ -16,8 +16,9 @@ thunar tumbler
 portmaster-stub-bin
 discord
 gcc cmake python jdk-openjdk clang gradle meson
+cpio pkg-config glm ninja
 lutris steam protontricks
-kitty
+alacritty kitty
 wofi
 fastfetch
 ollama

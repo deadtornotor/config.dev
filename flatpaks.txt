@@ -1,4 +1,8 @@
-com.github.tchx84.Flatseal com.spotify.Client
-com.github.PintaProject.Pinta org.kde.krita
-org.onlyoffice.desktopeditors org.libreoffice.LibreOffice
+com.github.tchx84.Flatseal
+one.ablaze.floorp
+com.spotify.Client
+com.github.PintaProject.Pinta
+org.kde.krita
 com.tomjwatson.Emote
+com.github.flxzt.rnote
+org.onlyoffice.desktopeditors

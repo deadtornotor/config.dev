@@ -18,11 +18,10 @@
 @define-color accent6 #0db9d7;
 
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    border: none;
-    font-family: "JetBrainsMono";
-    /* Recommended font sizes: 720p: ~14px, 1080p: ~18px */
     font-size: 14px;
+    font-family: 'JetBrainsMono Nerf Font';
+    font-feature-settings: '"zero", "tnum", "ss01", "ss02", "ss03", "cv01"';
+    border: none;
 }
 
 window#waybar {
@@ -40,8 +39,6 @@ window#waybar.hidden {
 }
 
 #workspaces button {
-    padding: 0 6px 0 0;
-    margin: 4px 0 6px 0;
     background-color: transparent;
     color: #ffffff;
     min-width: 25px;

@@ -34,6 +34,18 @@ else
     echo "packages.txt not found!"
 fi
 
+echo "==> Installing hyprland plugins..."
+# Check if hyprgrass is already installed
+if hyprpm list | grep -q 'hyprgrass'; then
+    echo "Hyprgrass is already installed."
+else
+    echo "Installing Hyprgrass..."
+    hyprpm add https://github.com/horriblename/hyprgrass
+    hyprpm enable hyprgrass
+    echo "Hyprgrass installation complete."
+fi
+
+
 echo "==> Enabling Deamons..."
 
 systemctl enable --now portmaster tuned tuned-ppd
@@ -82,7 +94,7 @@ if [[ -d home ]]; then
         base="$(basename "$file")"  # Prefix with dot
         [[ $base != .* ]] && base=".$base"
         target="$HOME/$base"
-        
+
         if [[ -n "$target" && "$target" != "/" ]]; then
             rm -rf "$target"
         fi
