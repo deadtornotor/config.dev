@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+echo "==> Installing hyprland plugins..."
+# Check if hyprgrass is already installed
+if hyprpm list | grep -q 'hyprgrass'; then
+    echo "Hyprgrass is already installed."
+else
+    echo "Installing Hyprgrass..."
+    hyprpm add https://github.com/horriblename/hyprgrass
+    echo "Hyprgrass installation complete."
+fi
+
+hyprpm enable hyprgrass
+
+if hyprpm list | grep -q 'hyprland-plugins'; then
+    echo "hyprland-plugins is already installed."
+else
+    echo "Installing hyprland-plugins..."
+    hyprpm add https://github.com/hyprwm/hyprland-plugins.git
+    echo "hyprland-plugins installation complete."
+fi
+
+hyprpm enable hyprexpo
+
+if [[ ! -f hypr/hw/hypr.conf ]]; then
+    mkdir -p $HOME/.config/hypr/hw
+    touch $HOME/.config/hypr/hw/hypr.conf
+    echo "Created $HOME/.config/hypr/hw/hypr.conf"
+fi
+
+if [[ ! -f hypr/hw/lock.conf ]]; then
+    mkdir -p $HOME/.config/hypr/hw
+    touch $HOME/.config/hypr/hw/lock.conf
+    echo "Created $HOME/.config/hypr/hw/lock.conf"
+fi

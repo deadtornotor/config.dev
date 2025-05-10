@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+echo "==> Installing flatpak apps from flatpak.txt..."
+if [[ -f flatpaks.txt ]]; then
+    flatpak install -y $(<"$SCRIPT_DIR/flatpaks.txt")
+else
+    echo "flatpaks.txt not found!"
+fi
+

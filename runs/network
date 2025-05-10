@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "==> Enabling Network Deamons..."
+
+systemctl enable --now NetworkManager portmaster
+

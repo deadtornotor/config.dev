@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "==> Enabling Audio Deamons..."
+
+systemctl --user enable --now pipewire
+systemctl --user enable --now pipewire-pulse
+

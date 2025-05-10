@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo "==> Installing yay if not already installed..."
+if ! command_exists yay; then
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si --noconfirm
+    cd ..
+    rm -fr yay
+else
+    echo "yay is already installed."
+fi
+

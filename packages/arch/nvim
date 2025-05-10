@@ -1,0 +1,11 @@
+neovim
+nodejs npm
+python python-pip python-debugpy
+go
+jdk-openjdk
+cmake make clang gcc
+sqlite3
+ripgrep
+fd
+unzip
+git lazygit 
