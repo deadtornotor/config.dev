@@ -1,1 +1,4 @@
-/home/deadtornotor/projects/dotfiles/dots/icons/default/index.theme
+[Icon Theme]
+Name=Default
+Comment=Default Cursor Theme
+Inherits=capitaine-cursors
