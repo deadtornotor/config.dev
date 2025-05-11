@@ -8,6 +8,18 @@ DEV_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Load function definitions
 source "$DEV_DIR/scripts/dev/env.sh"
 
+#!/bin/bash
+
+# Check if .git directory exists
+if [ -d "$DEV_DIR/.git" ]; then
+    cd "$DEV_DIR" || exit
+
+    echo "Initialize and update submodules recursively"
+    git submodule update --init --recursive
+else
+    echo "No .git directory found. Not a git repository."
+fi
+
 print_help() {
     cat <<EOF
 Usage: setup.sh [ACTION] [OPTIONS] [TYPES...]
@@ -113,6 +125,7 @@ args=()
 sync_items "$DEV_CONF_DIR" "$HOME/.config" "${args[@]}"
 sync_items "$DEV_HOME_DIR" "$HOME" "${args[@]}"
 sync_items "$DEV_ICONS_DIR" "$HOME/.icons" "${args[@]}"
+sync_items "$DEV_SCRIPT_DIR" "$HOME/.local/scripts" "${args[@]}"
 
 echo "✅ Syncing complete."
 

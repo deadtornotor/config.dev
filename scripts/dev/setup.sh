@@ -4,20 +4,20 @@ source "$SCRIPTS_DIR/install.sh"
 source "$SCRIPTS_DIR/run.sh"
 
 dev_setup() {
-    local dry_run=false
+    local args=()
     local types=()
 
     # Parse options and types
     for arg in "$@"; do
         if [[ "$arg" == "--dry-run" ]]; then
-            dry_run=true
+            args+=(--dry-run)
         else
             types+=("$arg")
         fi
     done
 
-    dev_install ${types[@]} ${dry_run:+--dry-run}
-    dev_run ${types[@]} ${dry_run:+--dry-run}
+    dev_install ${types[@]} ${args[@]}
+    dev_run ${types[@]}
 }
 
 dev_setup_all() {

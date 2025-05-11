@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+config_file="$HOME/.config/custom/project_dirs.conf"
+
+cd $HOME
+
+create_default() {
+  # Create config file with default if it doesn't exist
+  if [[ ! -f "$config_file" ]]; then
+    mkdir -p "$(dirname "$config_file")"
+    echo "$HOME/projects $HOME" > "$config_file"
+    echo "Created default config at $config_file"
+  fi
+}
+
+create_default
+
+# Read the directories from the config file and expand the paths
+dirs_to_search=$(cat "$config_file" | tr -s ' ' '\n' | while read -r dir; do
+  expanded_dir=$(eval echo "$dir")  # Expanding the ~ to the full home directory
+  if [[ -d "$expanded_dir" ]]; then
+    echo "$expanded_dir"
+  else
+    echo "Warning: Directory '$expanded_dir' not found in config."
+  fi
+done)
+
+# Run find on each directory from the config file
+selected=$(echo "$dirs_to_search" | xargs -I {} find {} -mindepth 1 -maxdepth 1 -type d | fzf)
+
+# Open Neovim in the selected directory
+if [[ -n "$selected" ]]; then
+  cd "$selected"
+  nvim .
+fi
+

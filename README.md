@@ -10,6 +10,7 @@ Set things like workspaces, monitor layout, etc.
 ### hypr/hw/lock.conf
 
 set screen with $screen = xyz
+
 set wallpaper with $wallpaper = xyz
 
 ### hypr/hyprpaper.conf

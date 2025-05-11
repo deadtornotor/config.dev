@@ -15,10 +15,9 @@ sync_items() {
     local use_symlink=true
     local dry_run=false
 
-    # Shift the positional arguments
     shift 2  # Skip the first two arguments (src_dir and dest_dir)
 
-    # Parse options for --nosym and --dry-run
+    # Parse options
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --no-sym)
@@ -28,7 +27,6 @@ sync_items() {
                 dry_run=true
                 ;;
             *)
-                # If we encounter an unexpected argument, print usage
                 echo "Unknown argument: $1"
                 sync_items_help
                 return 1
@@ -37,50 +35,41 @@ sync_items() {
         shift
     done
 
-    # Ensure the source directory exists
     if [[ ! -d "$src_dir" ]]; then
         echo "Source directory '$src_dir' not found!"
         return 1
     fi
 
-    # If dry-run is enabled, show what would happen
-    if [[ "$dry_run" == true ]]; then
-        echo "Dry run mode enabled. No files will be copied or symlinked."
-    fi
-
-    if [[ "$use_symlink" == true ]]; then
-        echo "Using symbolic links instead of copying"
-    else
-        echo "Copying instead of using symbolic links"
-    fi
-
+    [[ "$dry_run" == true ]] && echo "Dry run mode enabled. No files will be copied or symlinked."
+    [[ "$use_symlink" == true ]] && echo "Using symbolic links instead of copying" || echo "Copying instead of using symbolic links"
     echo "==> Syncing from $src_dir to $dest_dir ..."
 
-    mkdir -p "$dest_dir"
+    shopt -s dotglob nullglob
 
-    shopt -s dotglob nullglob  # Include hidden files like .bashrc
-    for item in "$src_dir"/*; do
-        local base
-        base="$(basename "$item")"
-        local target="$dest_dir/$base"
-
-        # If target exists, remove it
+    find "$src_dir" -type f | while IFS= read -r file; do
+        # Compute relative path
+        local rel_path="${file#$src_dir/}"
+        local target="$dest_dir/$rel_path"
 
         if [[ "$dry_run" == true ]]; then
-            echo "Would sync: $item -> $target"
+            echo "Would sync: $file -> $target"
         else
-            # Remove directory
-            [[ -n "$target" && "$target" != "/" ]] && rm -rf "$target"
+            # Ensure target directory exists
+            mkdir -p "$(dirname "$target")"
+
+            # Remove existing file only
+            [[ -e "$target" ]] && rm -f "$target"
 
             if [[ "$use_symlink" == true ]]; then
-                ln -s "$(realpath "$item")" "$target"
-                echo "Symlinked $item -> $target"
+                ln -s "$(realpath "$file")" "$target"
+                echo "Symlinked $file -> $target"
             else
-                cp -r "$item" "$target"
-                echo "Copied $item -> $target"
+                cp "$file" "$target"
+                echo "Copied $file -> $target"
             fi
         fi
     done
+
     shopt -u dotglob nullglob
 }
 

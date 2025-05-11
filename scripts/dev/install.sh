@@ -41,7 +41,7 @@ dev_install() {
                     sudo apt-get install -y $package
                     ;;
                 arch)
-                    if [[ "$package" != "yay" ]] && ! command_exists yay; then
+                    if [[ "$type" != "yay" ]] && ! command_exists yay; then
                         echo "yay not found, installing yay first..."
                         dev_setup yay
                     fi

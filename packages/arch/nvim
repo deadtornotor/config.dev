@@ -7,5 +7,6 @@ cmake make clang gcc
 sqlite3
 ripgrep
 fd
+fzf
 unzip
 git lazygit 
