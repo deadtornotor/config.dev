@@ -1,0 +1,11 @@
+[Default Applications]
+x-scheme-handler/terminal=ghostty.desktop
+inode/directory=thunar.desktop
+text/plain=nvim.desktop
+x-scheme-handler/http=floorp.desktop
+x-scheme-handler/https=floorp.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffice.desktop
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=onlyoffice.desktop
+application/vnd.openxmlformats-officedocument.presentationml.presentation=onlyoffice.desktop
+image/png=pinta.desktop
+image/jpeg=pinta.desktop

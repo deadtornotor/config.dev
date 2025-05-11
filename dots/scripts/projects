@@ -8,7 +8,7 @@ create_default() {
   # Create config file with default if it doesn't exist
   if [[ ! -f "$config_file" ]]; then
     mkdir -p "$(dirname "$config_file")"
-    echo "$HOME/projects $HOME" > "$config_file"
+    echo "~/projects/ ~/" > "$config_file"
     echo "Created default config at $config_file"
   fi
 }
