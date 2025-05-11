@@ -3,9 +3,9 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "==> Installing flatpak apps from flatpak.txt..."
-if [[ -f "$SCRIPT_DIR/flatpaks.txt" ]]; then
-    flatpak install -y $(<"$SCRIPT_DIR/flatpaks.txt")
+if [[ -f "$SCRIPT_DIR/files/flatpaks.txt" ]]; then
+    flatpak install -y $(<"$SCRIPT_DIR/files/flatpaks.txt")
 else
-    echo "$SCRIPT_DIR/flatpaks.txt not found!"
+    echo "$SCRIPT_DIR/files/flatpaks.txt not found!"
 fi
 
