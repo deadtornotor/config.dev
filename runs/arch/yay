@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
 echo "==> Installing yay if not already installed..."
 if ! command_exists yay; then
     git clone https://aur.archlinux.org/yay.git
