@@ -22,18 +22,18 @@ fi
 
 print_help() {
     cat <<EOF
-Usage: setup.sh [ACTION] [OPTIONS] [TYPES...]
+    Usage: setup.sh [ACTION] [OPTIONS] [TYPES...]
 
-Actions:
-  list              List all available types
-  install [TYPES]   Install packages (all types if none specified)
-  run [TYPES]       Run setup scripts (all types if none specified)
-  setup [TYPES]     Install and run (all types if none specified)
-  help              Show this help message
+    Actions:
+    list              List all available types
+    install [TYPES]   Install packages (all types if none specified)
+    run [TYPES]       Run setup scripts (all types if none specified)
+    setup [TYPES]     Install and run (all types if none specified)
+    help              Show this help message
 
-Options:
-  --no-sym          Copy files instead of creating symbolic links
-  --dry-run         Show what would be done, but don’t execute
+    Options:
+    --no-sym          Copy files instead of creating symbolic links
+    --dry-run         Show what would be done, but don’t execute
 EOF
 }
 
@@ -84,6 +84,7 @@ case "$ACTION" in
         ;;
     list)
         dev_list
+        exit 0
         ;;
     install)
         if [[ ${#TYPES[@]} -eq 0 ]]; then
