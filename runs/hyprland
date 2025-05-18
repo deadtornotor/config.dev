@@ -22,13 +22,13 @@ fi
 
 hyprpm enable hyprexpo
 
-if [[ ! -f hypr/hw/hypr.conf ]]; then
+if [[ ! -f $HOME/.config/hypr/hw/hypr.conf ]]; then
     mkdir -p $HOME/.config/hypr/hw
     touch $HOME/.config/hypr/hw/hypr.conf
     echo "Created $HOME/.config/hypr/hw/hypr.conf"
 fi
 
-if [[ ! -f hypr/hw/lock.conf ]]; then
+if [[ ! -f $HOME/.config/hypr/hw/lock.conf ]]; then
     mkdir -p $HOME/.config/hypr/hw
     touch $HOME/.config/hypr/hw/lock.conf
     echo "Created $HOME/.config/hypr/hw/lock.conf"

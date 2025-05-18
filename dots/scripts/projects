@@ -2,6 +2,8 @@
 
 config_file="$HOME/.config/custom/project_dirs.conf"
 
+initial_query="$1"
+
 cd $HOME
 
 create_default() {
@@ -25,12 +27,22 @@ dirs_to_search=$(cat "$config_file" | tr -s ' ' '\n' | while read -r dir; do
   fi
 done)
 
-# Run find on each directory from the config file
-selected=$(echo "$dirs_to_search" | xargs -I {} find {} -mindepth 1 -maxdepth 1 -type d | fzf)
+# Find both files and directories (non-recursive)
+find_results=$(echo "$dirs_to_search" | xargs -I {} find {} -mindepth 1 -maxdepth 1)
 
-# Open Neovim in the selected directory
-if [[ -n "$selected" ]]; then
-  cd "$selected"
-  nvim .
+# Run fzf with optional initial query
+if [[ -n "$initial_query" ]]; then
+  selected=$(echo "$find_results" | fzf -q "$initial_query")
+else
+  selected=$(echo "$find_results" | fzf)
 fi
 
+# Handle the selection
+if [[ -n "$selected" ]]; then
+  if [[ -f "$selected" ]]; then
+    cd "$(dirname "$selected")"
+  else
+    cd "$selected"
+  fi
+  nvim $selected
+fi

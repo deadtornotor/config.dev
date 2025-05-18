@@ -33,6 +33,8 @@
         "network",
         "custom/separator",
         "clock",
+        "custom/separator",
+        "custom/power",
     ],
     // Modules configuration
     "hyprland/window": {
@@ -60,7 +62,7 @@
         "interval": "once",
         "tooltip": true,
         "signal": 9,
-        "on-click": "~/.config/waybar/scripts/epp-toggle.sh next; pkill -SIGRTMIN+9 waybar",
+        "on-click": "$HOME/.config/waybar/scripts/epp-toggle.sh next; pkill -SIGRTMIN+9 waybar",
     },
     "custom/language": {
         "exec": "swaymsg --type get_inputs | grep \"xkb_active_layout_name\" | sed -u '1!d; s/^.*xkb_active_layout_name\": \"//; s/ (US)//; s/\",//' && swaymsg --type subscribe --monitor '[\"input\"]' | sed -u 's/^.*xkb_active_layout_name\": \"//; s/\",.*$//; s/ (US)//'"
@@ -162,7 +164,7 @@
             " ",
             " ",
             " "
-        ],// {
+        ], // {
         // "headphone": " ",
         // "hands-free": " ",
         // "headset": "🎧",
@@ -214,5 +216,13 @@
         "interval": 1,
         "exec": "echo '{\"class\": \"audio recording\"}'",
         "exec-if": "pgrep ffmpeg",
+    },
+    "custom/power": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": [
+            "⏻ ",
+        ],
+        "on-click": "$HOME/.config/waybar/scripts/poweroff.sh"
     },
 }

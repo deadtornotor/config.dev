@@ -18,7 +18,7 @@
 @define-color accent6 #0db9d7;
 
 * {
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'JetBrainsMono Nerf Font';
     font-feature-settings: '"zero", "tnum", "ss01", "ss02", "ss03", "cv01"';
     border: none;
@@ -80,8 +80,8 @@ window#waybar.hidden {
 #tray,
 #mode,
 #idle_inhibitor,
-#custom-power,
 #custom-pacman,
+#custom-power,
 #languager {
     padding: 0px 3px;
     margin: 4px 3px 5px 3px;
@@ -157,6 +157,8 @@ label:focus {
 }
 
 #custom-power {
+    font-size: 25px;
+    font-weight: normal;
     color: @accent6;
 }
 
