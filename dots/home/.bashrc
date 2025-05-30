@@ -17,7 +17,7 @@ source ~/.profile
 
 # take notes
 nt() {
-	nvim ~/Dokumente/notes/$1
+	nvim ~/Notes/$1
 }
 
 alias ls='ls --color=auto'

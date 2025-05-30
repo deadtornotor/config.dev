@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Screenshot directory
+mkdir -p ~/Screenshots
+
 echo "==> Installing hyprland plugins..."
 # Check if hyprgrass is already installed
 if hyprpm list | grep -q 'hyprgrass'; then
