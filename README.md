@@ -15,7 +15,7 @@ This is my utility for setting up my linux environment
 | `./setup run`  | Run all scripts assosiated with the types |
 | `./setup run {<types>}`  | Run script assosiated with the types |
 | `./setup setup`  | Setup everything (runs `install` and `run`) |
-| `./setup install {<types>}`  | Setup specified types (runs `install` and `run`) |
+| `./setup setup {<types>}`  | Setup specified types (runs `install` and `run`) |
 
 
 ### Additional arguments
