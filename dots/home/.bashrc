@@ -5,6 +5,8 @@ export PATH=$PATH:~/.cargo/bin/
 
 export PATH=$PATH:~/git/bin/
 
+export PATH=$PATH:~/go/bin/
+
 export PATH=$PATH:~/bin/
 
 source ~/.profile

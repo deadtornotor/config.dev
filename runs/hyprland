@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
+echo "==> Installing hyprsome plugins..."
+
+
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+if ! command_exists hyprsome; then
+    go install github.com/clown139880/hyprsome@latest
+else
+    echo "hyprsome already installed"
+fi
+
+
 echo "==> Installing hyprland plugins..."
 # Check if hyprgrass is already installed
 if hyprpm list | grep -q 'hyprgrass'; then
