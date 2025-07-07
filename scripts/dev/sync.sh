@@ -58,7 +58,7 @@ sync_items() {
             mkdir -p "$(dirname "$target")"
 
             # Remove existing file only
-            [[ -e "$target" ]] && rm -f "$target"
+            [[ -L "$target" || -e "$target" ]] && rm -f "$target"
 
             if [[ "$use_symlink" == true ]]; then
                 ln -s "$(realpath "$file")" "$target"
