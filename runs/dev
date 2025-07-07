@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Notes directory
-mkdir -p ~/Notes
+mkdir -p ~/notes
 
-# Projects directory
-mkdir -p ~/projects
+# Dev directory
+mkdir -p ~/dev
