@@ -18,10 +18,7 @@ for _, v in ipairs(arg) do
 end
 
 -- Dispatch
-if options["dry-run"] then
-  setup.dry_run()
-elseif positional[1] == "run" then
-  setup.run()
-else
-  setup.help()
-end
+setup.run({
+  positional = positional,
+  optional = options
+})
