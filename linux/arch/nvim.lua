@@ -72,11 +72,13 @@ local function install_nvim_config()
   local bob_version = conf.nvim_versions[branch] or "stable"
   local bob_cmd = string.format("bob install %s; bob use %s", bob_version, bob_version)
   local bob_ok = os.execute(bob_cmd)
-  if bob_ok ~= 0 then
+  if bob_ok ~= 0 and bob_ok ~= true then
     print("bob install failed.")
     return
   end
 
+  local rustup_cmd = "rustup install nightly"
+  os.execute(rustup_cmd)
   print("Neovim config installed successfully with branch: " .. branch)
 end
 
