@@ -50,11 +50,15 @@ M.index_configs()
 
 function M.types()
   local types = {}
+  local seen = {}
 
   for _, config in ipairs(_G.pack_configs) do
-    local config_types = config.types
-
-    table.move(config_types, 1, #config_types, #types + 1, types)
+    for _, t in ipairs(config.types) do
+      if not seen[t] then
+        types[#types + 1] = t
+        seen[t] = true
+      end
+    end
   end
 
   return types

@@ -62,6 +62,8 @@ function M:install()
     return
   end
 
+  print("Installing for ", self.name)
+
   ---@param mod utils.PackConfig
   local function callback(mod)
     if not mod.packs then
@@ -87,6 +89,8 @@ function M:setup()
     print("Not implemented for os")
     return
   end
+
+  print("Setup for ", self.name)
 
   ---@param mod utils.PackConfig
   ---@param config utils.PackConfigRegister
@@ -115,6 +119,8 @@ function M:copy()
     print("Not implemented for os")
     return
   end
+
+  print("Copying for ", self.name)
 
   ---@param mod utils.PackConfig
   ---@param config utils.PackConfigRegister

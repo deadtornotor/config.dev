@@ -1,12 +1,16 @@
 local utils = require("utils")
 
 ---@type cmd.Base
-local M = utils.cmd.base:new("install", "Install for types", "[{<type>}, *]")
+local M = utils.cmd.base:new("install", "Install for types", "[{<type>}, '*']")
 
 function M:run(opts)
   if #opts.positional > 1 then
     utils.package_manager.update()
   end
+
+  print(
+    string.format("Positional: %s", table.concat(opts.positional, ","))
+  )
 
   ---@param pack utils.Pack Callback for the package
   local function callback(pack)

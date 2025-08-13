@@ -1,7 +1,7 @@
 local utils = require("utils")
 
 ---@type cmd.Base
-local M = utils.cmd.base:new("copy", "Copy dotfiles", "[{<type>}, *]")
+local M = utils.cmd.base:new("copy", "Copy dotfiles", "[{<type>}, '*']")
 
 function M:run(opts)
   if #opts.positional > 1 and opts.positional[2] == "*" then

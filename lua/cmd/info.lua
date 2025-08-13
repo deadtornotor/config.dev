@@ -1,7 +1,7 @@
 local utils = require("utils")
 
 ---@type cmd.Base
-local M = utils.cmd.base:new("info", "Information for types", "[{<type>}, *]")
+local M = utils.cmd.base:new("info", "Information for types", "[{<type>}, '*']")
 
 function M:run(opts)
   ---@param pack utils.Pack Callback for the package

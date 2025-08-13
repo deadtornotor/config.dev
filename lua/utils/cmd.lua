@@ -20,7 +20,7 @@ function M.positional_as_pack_type(opts, callback)
 
     if pack_type == nil then
       print(string.format(
-        "Unknown: %s", name)
+        "Unknown type: %s", name)
       )
       return
     end
@@ -29,10 +29,11 @@ function M.positional_as_pack_type(opts, callback)
   end
 
   -- if '*' e.g. All
-  if #opts.positional[2] == "*" then
+  if opts.positional[2] == "*" then
     for _, name in ipairs(pack.types()) do
       for_type(name)
     end
+    return true
   end
 
   for i = 2, #opts.positional do
