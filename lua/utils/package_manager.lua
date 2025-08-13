@@ -3,6 +3,11 @@ local M = {}
 require("core.os")
 
 local function run(cmd)
+  if _G.dry_run then
+    print("==> Would run ", cmd)
+    return
+  end
+
   print("==> Running:", cmd)
   local ok, _, code = os.execute(cmd)
   return ok == true or code == 0

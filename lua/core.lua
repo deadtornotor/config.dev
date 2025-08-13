@@ -17,6 +17,17 @@ require("core.pack")
 function M.run(opts)
   rocks_ensure.setup()
 
+  local arrays = require("utils.array")
+
+  if opts.optional["dry_run"] ~= nil then
+    print("Performing dry_run")
+    _G.dry_run = true
+  else
+    _G.dry_run = false
+  end
+
+  print(require("utils.fs").dots_dir)
+
   local command_name = opts.positional and opts.positional[1]
 
   if not command_name then

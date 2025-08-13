@@ -68,6 +68,11 @@ function M:install()
       return
     end
 
+    if _G.dry_run then
+      print("Would install:\n", table.concat(mod.packs, "\n"))
+      return
+    end
+
     manager.install(mod.packs)
   end
 
@@ -89,6 +94,12 @@ function M:setup()
 
     assert(type(mod.setup) == "function",
       string.format("%s Setup function is not a function, located in %s", self.name, config.module))
+
+
+    if _G.dry_run then
+      print("Would setup: ", self.name)
+      return
+    end
 
     mod.setup()
   end
