@@ -40,6 +40,31 @@ local function prompt_branches(branches)
   end
 end
 
+-- Required for bob
+local function create_bash_login()
+  local fs = require("utils.fs")
+
+  -- Get the user's home directory from environment
+  local home = os.getenv("HOME")
+  if not home then
+    error("Could not determine HOME directory")
+  end
+
+  local bash_login_path = home .. "/.bash_login"
+
+  if fs.file_exists(bash_login_path) then
+    print(".bash_login already exists at " .. bash_login_path)
+  else
+    local file, err = io.open(bash_login_path, "w")
+    if not file then
+      error("Failed to create .bash_login: " .. err)
+    end
+    file:write("# .bash_login created by Lua script\n")
+    file:close()
+    print(".bash_login created at " .. bash_login_path)
+  end
+end
+
 -- Main install function for Neovim config
 local function install_nvim_config()
   local home = os.getenv("HOME")
@@ -67,6 +92,8 @@ local function install_nvim_config()
     print("Failed to clone repository.")
     return
   end
+
+  create_bash_login()
 
   print("Running bob install for branch " .. branch .. "...")
   local bob_version = conf.nvim_versions[branch] or "stable"

@@ -1,6 +1,6 @@
 local M = {}
 
-local lfs = require("lfs")
+M.lfs = require("lfs")
 
 function M.get_script_dir()
   local source = debug.getinfo(2, "S").source -- 2 = caller of this function
@@ -10,6 +10,11 @@ function M.get_script_dir()
     return path:match("(.*/)")
   end
   return nil
+end
+
+function M.file_exists(path)
+  local attr = lfs.attributes(path)
+  return attr and attr.mode == "file"
 end
 
 return M
