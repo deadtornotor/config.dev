@@ -69,7 +69,10 @@ function M:install()
     end
 
     if _G.dry_run then
-      print("Would install:\n", table.concat(mod.packs, "\n"))
+      local packages = table.concat(mod.packs, "\n")
+      print(
+        string.format("Would install:\n%s", packages)
+      )
       return
     end
 
@@ -125,7 +128,9 @@ function M:copy()
 
 
     if _G.dry_run then
-      print("Would copy dots:\n", table.concat(mod.dots, "\n"))
+      local files = table.concat(mod.dots, "\n")
+      print(
+        string.format("Would copy dots:\n%s", files))
       return
     end
 

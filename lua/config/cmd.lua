@@ -5,4 +5,5 @@ return {
   "info",
   "install",
   "setup",
+  "copy",
 }

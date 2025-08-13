@@ -60,10 +60,19 @@ local function file_exists(path)
   return attr and attr.mode == "file"
 end
 
+local function dir_exists(path)
+  local attr = lfs.attributes(path)
+  return attr and attr.mode == "directory"
+end
+
+local function exists(path)
+  return file_exists(path) or dir_exists(path)
+end
+
 -- Ensure a directory exists (creates it recursively if needed)
 local function ensure_dir(path)
   local attr = lfs.attributes(path)
-  if attr and attr.mode == "directory" then return end
+  if dir_exists(path) then return end
   -- Recursively create parent first
   local parent = path:match("^(.*)/[^/]+$")
   if parent and parent ~= "" then
@@ -75,7 +84,8 @@ end
 -- Copy a file from src to dest
 local function copy_file(src, dest)
   local in_f = assert(io.open(src, "rb"), "Cannot open source: " .. src)
-  ensure_dir(dest:match("^(.*)/[^/]+$") or home)
+  local ensure_path = dest:match("^(.*)/[^/]+$") or home
+  ensure_dir(ensure_path)
   local out_f = assert(io.open(dest, "wb"), "Cannot open destination: " .. dest)
   out_f:write(in_f:read("*a"))
   in_f:close()
@@ -126,6 +136,8 @@ end
 M.dots_dir = dots_dir()
 M.get_script_dir = get_script_dir
 M.file_exists = file_exists
+M.dir_exists = dir_exists
+M.exists = exists
 M.ensure_dir = ensure_dir
 M.copy_file = copy_file
 M.copy_path = copy_path
