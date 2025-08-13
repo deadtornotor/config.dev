@@ -1,4 +1,4 @@
-local pm = require("utils").package_manager
+local pm = require("utils.package_manager")
 
 ---@class core.LuaRocks
 local M = {}
@@ -16,7 +16,9 @@ local function ensure_luarocks_installed()
   end
 
   print("==> LuaRocks not found, installing...")
-  pm.install(_G.os_config.os_id, { "luarocks" })
+  pm.install({
+    "luarocks",
+  })
   return os.execute("luarocks --version > /dev/null 2>&1") == true
 end
 
