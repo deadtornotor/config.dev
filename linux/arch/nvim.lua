@@ -13,6 +13,7 @@ local M = {
     "cmake",
     "clang",
     "llvm",
+    "go",
     "ripgrep",
     "fd",
     "fzf",
