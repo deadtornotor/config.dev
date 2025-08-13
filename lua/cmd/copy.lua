@@ -6,7 +6,7 @@ local M = utils.cmd.base:new("copy", "Copy dotfiles", "[{<type>}, '*']")
 function M:run(opts)
   if #opts.positional > 1 and opts.positional[2] == "*" then
     utils.fs.copy_dots()
-    return
+    return true
   end
 
   ---@param pack utils.Pack Callback for the package
