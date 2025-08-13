@@ -112,6 +112,29 @@ function M:copy()
     print("Not implemented for os")
     return
   end
+
+  ---@param mod utils.PackConfig
+  ---@param config utils.PackConfigRegister
+  local function callback(mod, config)
+    if not mod.dots then
+      return
+    end
+
+    assert(type(mod.dots) == "table",
+      string.format("%s dots is not a table, located in %s", self.name, config.module))
+
+
+    if _G.dry_run then
+      print("Would copy dots:\n", table.concat(mod.dots, "\n"))
+      return
+    end
+
+    local fs = require("utils.fs")
+
+    fs.copy_dots(mod.dots)
+  end
+
+  self:for_each(callback)
 end
 
 function M:info()

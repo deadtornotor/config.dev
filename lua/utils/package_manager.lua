@@ -4,7 +4,7 @@ require("core.os")
 
 local function run(cmd)
   if _G.dry_run then
-    print("==> Would run ", cmd)
+    print("==> Would run: ", cmd)
     return
   end
 
