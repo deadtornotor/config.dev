@@ -1,5 +1,7 @@
 local M = {}
 
+require("core.os")
+
 local function run(cmd)
   print("==> Running:", cmd)
   local ok, _, code = os.execute(cmd)
