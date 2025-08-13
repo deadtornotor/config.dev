@@ -9,6 +9,6 @@ return {
   packs = {
     "networkmanager",
     "network-manager-applet",
-    "portmaster-stub-bin",
+    "portmaster-bin",
   }
 }

@@ -3,6 +3,5 @@ return {
   packs = {
     "lutris",
     "steam",
-    "protontricks",
   }
 }
