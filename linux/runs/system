@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-echo "==> Enabling System Deamons..."
-
-systemctl enable --now tuned tuned-ppd
-

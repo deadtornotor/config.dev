@@ -1,3 +1,0 @@
-gcc cmake python jdk-openjdk clang gradle meson
-cpio pkg-config glm ninja git
-base-devel fzf
