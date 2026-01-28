@@ -1,3 +1,0 @@
-[submodule "dots/conf/nvim"]
-	path = dots/conf/nvim
-	url = https://github.com/deadtornotor/config.nvim.git

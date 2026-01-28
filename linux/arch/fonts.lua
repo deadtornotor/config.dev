@@ -1,0 +1,11 @@
+---@type utils.PackConfig
+return {
+  packs = {
+    "ttf-font-awesome",
+    "ttf-roboto",
+    "noto-fonts-emoji",
+    "noto-fonts",
+    "ttf-jetbrains-mono",
+    "ttf-jetbrains-mono-nerd",
+  }
+}

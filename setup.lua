@@ -2,7 +2,7 @@
 package.path = "./lua/?.lua;./lua/?/init.lua;" .. package.path
 
 -- Require your setup module
-local setup = require("setup")
+local core = require("core")
 
 -- Parse flags manually
 local options = {}
@@ -18,7 +18,7 @@ for _, v in ipairs(arg) do
 end
 
 -- Dispatch
-setup.run({
+core.run({
   positional = positional,
   optional = options
 })
