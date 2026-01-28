@@ -15,10 +15,10 @@ end
 
 local pkgman = {
   arch = {
-    install = "sudo pacman -S --noconfirm",
-    update = "sudo pacman -Sy",
-    upgrade = "sudo pacman -Syu --noconfirm",
-    remove = "sudo pacman -Rns --noconfirm",
+    install = "yay -S --noconfirm",
+    update = "yay -Sy",
+    upgrade = "yay -Syu --noconfirm",
+    remove = "yay -Rns --noconfirm",
   },
   debian = {
     install = "sudo apt install -y",
